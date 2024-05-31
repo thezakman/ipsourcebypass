@@ -8,6 +8,7 @@
 import argparse
 import os
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 import requests
 from rich.console import Console
@@ -492,17 +493,15 @@ BYPASS_HEADERS = [
 ]
 
 
-def test_bypass(options, proxies, results, header_name, header_value, delay):
+def test_bypass(options, proxies, results, header_name, header_value):
     http_headers = {h.split(':', 1)[0]: h.split(':', 1)[1].strip() for h in options.headers}
     http_headers[header_name] = header_value
     try:
         r = requests.get(
             url=options.url,
-            # This is to set the client to accept insecure servers
             verify=options.verify,
             proxies=proxies,
             allow_redirects=options.redirect,
-            # This is to prevent the download of huge files, focus on the request, not on the data
             stream=True,
             headers=http_headers
         )
@@ -523,7 +522,7 @@ def test_bypass(options, proxies, results, header_name, header_value, delay):
         "header": "%s: %s" % (header_name, header_value),
         "curl": "curl %s\"%s\" -H \"%s: %s\"" % (("-k " if not options.verify else ""), options.url, header_name, header_value)
     }
-    time.sleep(delay)
+    time.sleep(options.delay)
 
 def print_results(console, results, curl=False):
     if options.verbose:
@@ -535,7 +534,6 @@ def print_results(console, results, curl=False):
     if curl:
         table.add_column("curl")
 
-    # Choose colors for uncommon lengths
     lengths = [result[1]["length"] for result in results.items()]
     lengths = [(len([1 for result in results.items() if result[1]["length"] == l]), l) for l in list(set(lengths))]
 
@@ -624,12 +622,6 @@ if __name__ == '__main__':
         if not options.verify:
             # Disable warnings of insecure connection for invalid certificates
             requests.packages.urllib3.disable_warnings()
-            # Allow use of deprecated and weak cipher methods
-            requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS += ':HIGH:!DH:!aNULL'
-            try:
-                requests.packages.urllib3.contrib.pyopenssl.util.ssl_.DEFAULT_CIPHERS += ':HIGH:!DH:!aNULL'
-            except AttributeError:
-                pass
 
         results = {}
 
@@ -637,10 +629,13 @@ if __name__ == '__main__':
         with ThreadPoolExecutor(max_workers=min(options.threads, len(BYPASS_HEADERS))) as tp:
             for bph in sorted(BYPASS_HEADERS, key=lambda x: x["header"]):
                 if options.case:
-                    tp.submit(test_bypass, options, proxies, results, bph["header"].upper(), options.ip, options.delay)
-                    tp.submit(test_bypass, options, proxies, results, bph["header"].lower(), options.ip, options.delay)
+                    tp.submit(test_bypass, options, proxies, results, bph["header"].upper(), options.ip)
+                    time.sleep(options.delay)
+                    tp.submit(test_bypass, options, proxies, results, bph["header"].lower(), options.ip)
+                    time.sleep(options.delay)
                 else:
-                    tp.submit(test_bypass, options, proxies, results, bph["header"], options.ip, options.delay)
+                    tp.submit(test_bypass, options, proxies, results, bph["header"], options.ip)
+                    time.sleep(options.delay)
 
         # Sorting the results by method name
         results = {key: results[key] for key in sorted(results, key=lambda key: results[key]["length"])}
