@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 # File name          : ipsourcebypass.py
 # Author             : Podalirius (@podalirius_)
-# Date created       : 10 Oct 2021
+# New Features       : TheZakMan (@TheZakMan)
+# Date created       : 31 May 2024
 
 import argparse
 import os
@@ -14,7 +15,7 @@ from rich import box
 from rich.table import Table
 import json
 
-VERSION = "1.3"
+VERSION = "1.4"
 
 BYPASS_HEADERS = [
     {
@@ -121,11 +122,377 @@ BYPASS_HEADERS = [
         "header":"Proxy-Client-IP",
         "description": "No reference now, just very used",
         "references":[""]
+    },
+        {
+        "header": "Cache_Info",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Cf_Connecting_Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Client_Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Client-Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Coming_From",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Connect_Via_Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Forward_For",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Forward-For",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Forwarded_For",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Forwarded_For_Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Http-Client-Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Http-Forwarded-For-Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Http-Pc-Remote-Addr",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Http-Proxy-Connection",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Http-Url",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Http-Via",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Http-X-Forwarded-For-Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Http-X-Imforwards",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Http-Xroxy-Connection",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Pc_Remote_Addr",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Pragma",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Proxy",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Proxy_Authorization",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Proxy_Connection",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Proxy-Host",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Proxy-Url",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Real-Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Redirect",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Referer",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Referrer",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Refferer",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Remote_Addr",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Request-Uri",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Source-Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Uri",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Url",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Via",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X_Cluster_Client_Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X_Coming_From",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X_Delegate_Remote_Host",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X_Forwarded",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X_Forwarded_For",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X_Forwarded_For_Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X_Imforwards",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X_Locking",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X_Looking",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X_Real_Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Backend-Host",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Bluecoat-Via",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Cache-Info",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Custom-Ip-Authorization",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Forward-For",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Forwarded-Port",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Forwarded-Scheme",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Forwarded-Server",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Gateway-Host",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Host",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Http-Destinationurl",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Http-Host-Override",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Original-Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Original-Remote-Addr",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Original-Url",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Originally-Forwarded-For",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Proxy-Url",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Proxymesh-Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Proxyuser-Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-Rewrite-Url",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "X-True-Ip",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Xonnection",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Xproxy",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Xroxy_Connection",
+        "description": "",
+        "references": [""]
+    },
+    {
+        "header": "Zcache_Control",
+        "description": "",
+        "references": [""]
     }
+
 ]
 
 
-def test_bypass(options, proxies, results, header_name, header_value):
+def test_bypass(options, proxies, results, header_name, header_value, delay):
     http_headers = {h.split(':', 1)[0]: h.split(':', 1)[1].strip() for h in options.headers}
     http_headers[header_name] = header_value
     try:
@@ -156,7 +523,7 @@ def test_bypass(options, proxies, results, header_name, header_value):
         "header": "%s: %s" % (header_name, header_value),
         "curl": "curl %s\"%s\" -H \"%s: %s\"" % (("-k " if not options.verify else ""), options.url, header_name, header_value)
     }
-
+    time.sleep(delay)
 
 def print_results(console, results, curl=False):
     if options.verbose:
@@ -178,7 +545,7 @@ def print_results(console, results, curl=False):
                 style = "green"
             elif result[1]["length"] == max(lengths)[1]:
                 style = "red"
-            if curl == True:
+            if curl:
                 table.add_row(str(result[1]["length"]), str(result[1]["status_code"]), result[1]["header"], result[1]["curl"], style=style)
             else:
                 table.add_row(str(result[1]["length"]), str(result[1]["status_code"]), result[1]["header"], style=style)
@@ -187,7 +554,7 @@ def print_results(console, results, curl=False):
         colors = {str(sorted(lengths, reverse=True)[k][1]): scale[k] for k in range(len(lengths))}
         for result in results.items():
             style = colors[str(result[1]["length"])]
-            if curl == True:
+            if curl:
                 table.add_row(str(result[1]["length"]), str(result[1]["status_code"]), result[1]["header"], result[1]["curl"], style=style)
             else:
                 table.add_row(str(result[1]["length"]), str(result[1]["status_code"]), result[1]["header"], style=style)
@@ -196,22 +563,28 @@ def print_results(console, results, curl=False):
         colors = {str(sorted(lengths, reverse=True)[k][1]): scale[k] for k in range(len(lengths))}
         for result in results.items():
             style = colors[str(result[1]["length"])]
-            if curl == True:
+            if curl:
                 table.add_row(str(result[1]["length"]), str(result[1]["status_code"]), result[1]["header"], result[1]["curl"], style=style)
             else:
                 table.add_row(str(result[1]["length"]), str(result[1]["status_code"]), result[1]["header"], style=style)
     else:
         for result in results.items():
             style = "orange3"
-            if curl == True:
+            if curl:
                 table.add_row(str(result[1]["length"]), str(result[1]["status_code"]), result[1]["header"], result[1]["curl"], style=style)
             else:
                 table.add_row(str(result[1]["length"]), str(result[1]["status_code"]), result[1]["header"], style=style)
     console.print(table)
 
+banner = '''
+┳┏┓┏┓         ┳┓        
+┃┃┃┗┓┏┓┓┏┏┓┏┏┓┣┫┓┏┏┓┏┓┏┏
+┻┣┛┗┛┗┛┗┻┛ ┗┗ ┻┛┗┫┣┛┗┻┛┛
+                 ┛┛ ''' + VERSION
 
 def parseArgs():
-    print("IPSourceBypass v%s - by @podalirius_\n" % VERSION)
+    print(banner)
+    print("- by @podalirius_\n")
     parser = argparse.ArgumentParser(description="This Python script can be used to test for IP source bypass using HTTP headers")
     parser.add_argument("url", help="e.g. https://example.com:port/path")
     parser.add_argument("-v", "--verbose", default=None, action="store_true", help='arg1 help message')
@@ -225,11 +598,10 @@ def parseArgs():
     parser.add_argument("-H", "--header", dest="headers", action="append", default=[], help='arg1 help message')
     parser.add_argument("-S", "--save", dest="save", default=False, required=False, action="store_true", help="Save all HTML responses.")
     parser.add_argument("-c", "--case", dest="case", action='store_true', default=False, required=False, help="Alternate Upper and Lower case (Case can matter with certains web servers)")
+    parser.add_argument("-d", "--delay", dest="delay", action="store", type=int, default=0, required=False, help="Delay between requests in seconds (default: 0)")
     return parser.parse_args()
 
-
 if __name__ == '__main__':
-
     options = parseArgs()
     try:
         console = Console()
@@ -251,7 +623,7 @@ if __name__ == '__main__':
             proxies = None
 
         if not options.verify:
-            # Disable warings of insecure connection for invalid certificates
+            # Disable warnings of insecure connection for invalid certificates
             requests.packages.urllib3.disable_warnings()
             # Allow use of deprecated and weak cipher methods
             requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS += ':HIGH:!DH:!aNULL'
@@ -264,12 +636,12 @@ if __name__ == '__main__':
 
         # Waits for all the threads to be completed
         with ThreadPoolExecutor(max_workers=min(options.threads, len(BYPASS_HEADERS))) as tp:
-            for bph in sorted(BYPASS_HEADERS, key=lambda x:x["header"]):
+            for bph in sorted(BYPASS_HEADERS, key=lambda x: x["header"]):
                 if options.case:
-                    tp.submit(test_bypass, options, proxies, results, bph["header"].upper(), options.ip)
-                    tp.submit(test_bypass, options, proxies, results, bph["header"].lower(), options.ip)
+                    tp.submit(test_bypass, options, proxies, results, bph["header"].upper(), options.ip, options.delay)
+                    tp.submit(test_bypass, options, proxies, results, bph["header"].lower(), options.ip, options.delay)
                 else:
-                    tp.submit(test_bypass, options, proxies, results, bph["header"], options.ip)
+                    tp.submit(test_bypass, options, proxies, results, bph["header"], options.ip, options.delay)
 
         # Sorting the results by method name
         results = {key: results[key] for key in sorted(results, key=lambda key: results[key]["length"])}
@@ -279,9 +651,8 @@ if __name__ == '__main__':
 
         # Export to JSON if specified
         if options.jsonfile is not None:
-            f = open(options.jsonfile, "w")
-            f.write(json.dumps(results, indent=4) + "\n")
-            f.close()
+            with open(options.jsonfile, "w") as f:
+                f.write(json.dumps(results, indent=4) + "\n")
 
     except KeyboardInterrupt:
         print("[+] Terminating script...")
