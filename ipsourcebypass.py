@@ -580,11 +580,10 @@ banner = '''
 ┳┏┓┏┓         ┳┓        
 ┃┃┃┗┓┏┓┓┏┏┓┏┏┓┣┫┓┏┏┓┏┓┏┏
 ┻┣┛┗┛┗┛┗┻┛ ┗┗ ┻┛┗┫┣┛┗┻┛┛
-                 ┛┛ ''' + VERSION
+by @podalirius_  ┛┛ ''' + VERSION
 
 def parseArgs():
-    print(banner)
-    print("- by @podalirius_\n")
+    print(banner,"\n")
     parser = argparse.ArgumentParser(description="This Python script can be used to test for IP source bypass using HTTP headers")
     parser.add_argument("url", help="e.g. https://example.com:port/path")
     parser.add_argument("-v", "--verbose", default=None, action="store_true", help='arg1 help message')
